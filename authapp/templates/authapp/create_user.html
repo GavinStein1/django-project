@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Insta: Sign Up</title>
+    <h1>Sign Up</h1>
+</head>
+<body>
+    <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit">
+    </form>
+    <div>
+        <a href="{% url 'login' %}">Login</a>
+    </div>
+    <div>
+        <a href="{% url 'home:home' %}">Home</a>
+    </div>
+</body>
+</html>

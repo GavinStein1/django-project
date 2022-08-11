@@ -1,0 +1,11 @@
+{% extends 'home/base.html' %}
+{% csrf_token %}
+
+{% block content %}
+    <h1><strong>Welcome to your feed {{ user.username }}</strong></h1>
+    {% for post in posts %}
+        <p>{{ post.id }}</p>
+        <p>{{ post.caption }}</p>
+    {% endfor %}
+    <a href="{% url 'home:home' %}">Home</a>
+{%  endblock %}

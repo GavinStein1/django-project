@@ -1,0 +1,24 @@
+{% extends "home/base.html" %}
+{% csrf_token %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <h1><strong>Welcome to your page</strong></h1>
+        <div>
+            <a href="{% url 'home:feed' %}">Go to feed</a>
+        </div>
+        <h2><strong>{{ user.username }}</strong></h2>
+        <h3>followers: <a href="{% url 'home:user-followers' user.username %}">{{ num_followers }}</a>
+            following: <a href="{% url 'home:user-following' user.username %}">{{ num_following }}</a></h3>
+        {% for post in posts %}
+            <p>{{ post.id }}</p>
+            <p>{{ post.caption }}</p>
+        {% endfor %}
+        <a href="{% url 'logout' %}">Logout</a>
+    {% else %}
+        <a href="{% url 'login' %}">Login here</a>
+        <div>
+            <a href="{% url 'authapp:create-user' %}">Create Account</a>
+        </div>
+    {% endif %}
+{%  endblock %}

@@ -1,0 +1,19 @@
+<!-- templates/registration/login.html -->
+{% extends 'home/base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<h2>Log In</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Log In</button>
+</form>
+    <div>
+        <a href="{% url 'authapp:create-user' %}">Create Account</a>
+    </div>
+    <div>
+        <a href="{% url 'home:home' %}">Home</a>
+    </div>
+{% endblock %}

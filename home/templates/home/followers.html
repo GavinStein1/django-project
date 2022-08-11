@@ -1,0 +1,9 @@
+{% extends "home/follow_base.html" %}
+{% csrf_token %}
+
+{% block follow %}
+    <h3>followers: {{ num_followers }}</h3>
+    {% for follower in followers %}
+        <p><a href="{% url 'home:user-profile' follower %}">{{ follower }}</a></p>
+    {% endfor %}
+{%  endblock %}

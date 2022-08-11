@@ -1,0 +1,10 @@
+{% extends "home/base.html" %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <h2><strong>{{ user.username }}</strong></h2>
+        {% block follow %}
+
+        {% endblock %}
+    {% endif %}
+{%  endblock %}
