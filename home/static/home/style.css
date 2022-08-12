@@ -1,0 +1,37 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #eeeeee;
+}
+
+.header-menu {
+    height: 60px;
+    background-color: #111111;
+}
+
+td.menu-button {
+    width: 126px;
+    height: 40px;
+    margin: 10px 20px;
+    background-color: #eeeeee;
+    vertical-align: bottom;
+    border-radius: 15px;
+    font-family: Montserrat;
+    text-align: center;
+    vertical-align: middle;
+}
+
+td.menu-button p {
+    font-family: Montserrat;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.search-bar {
+    width: auto;
+
+}

@@ -3,8 +3,10 @@ from django.template import loader
 from django.http import HttpResponse, HttpResponseRedirect
 # from django.views import generic
 from django.urls import reverse
+from PIL import Image
 
 from .models import Post
+from .forms import NewPostForm
 from authapp.models import User
 
 
@@ -79,16 +81,33 @@ def user_profile(request, user):
     if user == request.user.username:
         return HttpResponseRedirect(reverse("home:user-home", args=(user,)))
 
-    # TODO: Check request.user is in user's followers (ensure privacy).
-    # If request.user not in user's followers, show restricted page. Else show user profile
+    if request.method == "POST":
+        data = request.POST
+        usr = User.objects.get(username=user)
+        if data["follow"] == "follow":
+            request.user.following.append(usr.pk)
+            usr.followers.append(request.user.pk)
+            request.user.save()
+            usr.save()
+            # return HttpResponseRedirect(reverse("home:user-profile", args=(user,)))
+        if data["follow"] == "unfollow":
+            request.user.following.remove(usr.pk)
+            usr.followers.remove(request.user.pk)
+            request.user.save()
+            usr.save()
+            # return HttpResponseRedirect(reverse("home:user-profile", args=(user,)))
+
     profile_user = User.objects.get(username=user)
     if request.user.pk not in profile_user.followers:
-        return HttpResponse("You do not follow this user")
+        follow = False
+    else:
+        follow = True
 
     posts = Post.objects.filter(user__pk=profile_user.pk)
     context = {
         "profile_user": profile_user,
         "posts": posts,
+        "follow": follow,
     }
     return render(request, 'home/profile.html', context)
 
@@ -105,7 +124,12 @@ def feed(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect("/")
 
-    posts = request.user.unseen_posts
+    posts_id = request.user.unseen_posts
+    posts = []
+    for post_id in posts_id:
+        posts.append(Post.objects.get(id=post_id))
+    request.user.unseen_posts = []
+    request.user.save()
 
     context = {
         "posts": posts,
@@ -115,5 +139,60 @@ def feed(request):
 
 
 def new_post(request, user):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect("/")
 
-    return render(request, 'home/new_post.html', {})
+    if user != request.user.username:
+        return HttpResponseRedirect("/")
+
+    if request.method == "POST":
+        form = NewPostForm(request.POST, request.FILES)
+        if form.is_valid():
+            data = form.cleaned_data
+            image = Image.open(data["image"])
+            if check_image(image):
+                post = Post()
+                post.user = request.user
+                post.caption = data["caption"]
+                try:
+                    image.save("media/{}.{}".format(post.id, image.format), format=image.format)
+                except Exception as e:
+                    print(e)
+                    return HttpResponse("Failed to upload image")
+
+                post.file_path = "media/{}.{}".format(post.id, image.format)
+                post.save()
+
+                for follower in request.user.followers:
+                    usr = User.objects.get(pk=follower)
+                    usr.unseen_posts.append(post.id)
+                    usr.save()
+            else:
+                return HttpResponse("Failed to upload image")
+
+        else:
+            print("form not valid")
+        return HttpResponseRedirect("/create-user")
+
+    else:
+        form = NewPostForm()
+        context = {
+            "form": form,
+        }
+    return render(request, 'home/new_post.html', context)
+
+
+def check_image(img):
+    try:
+        formats = [
+            "PNG",
+            "JPEG",
+            "HEIC",
+        ]
+
+        if img.format not in formats:
+            return False
+
+        return True
+    except Exception:
+        return False

@@ -1,13 +1,24 @@
 {% extends "home/base.html" %}
-{% csrf_token %}
 
 {% block content %}
     {% if user.is_authenticated %}
         <h1><strong>Welcome to {{ profile_user.username }}'s page</strong></h1>
-        {% for post in posts %}
-            <p>{{ post.id }}</p>
-            <p>{{ post.caption }}</p>
-        {% endfor %}
-        <a href="{% url 'logout' %}">Logout</a>
+        {% if follow %}
+            <form method="post">
+                {% csrf_token %}
+                <button name="follow" value="unfollow">Unfollow</button>
+            </form>
+            {% for post in posts %}
+                <div>
+                    <img src="/{{ post.file_path }}" alt="{{ post.id }}" width="300">
+                </div>
+                <p>{{ post.caption }}</p>
+            {% endfor %}
+        {% else %}
+            <form method="post">
+                {% csrf_token %}
+                <button name="follow" value="follow">Follow</button>
+            </form>
+        {% endif %}
     {% endif %}
 {%  endblock %}
