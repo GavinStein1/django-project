@@ -1,14 +1,31 @@
 {% extends 'home/base.html' %}
 {% csrf_token %}
-
 {% block content %}
-    <h1><strong>Welcome to your feed {{ user.username }}</strong></h1>
     {% for post in posts %}
-        <p>{{ post.user.username }}</p>
-        <div>
-            <img src="/{{ post.file_path }}" alt="{{ post.id }}" width="300">
+        <div class="feed-container">
+            <table class="feed-table">
+                <tr>
+                    <td class="profile-pic-feed" rowspan="3">
+                        <img src="{{ post.user.profile_pic }}" alt="{{ post.user.username }}" width="50">
+                    </td>
+                    <td class="post">
+                        <img src="/{{ post.file_path }}" alt="{{ post.id }}" width="300">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="username">
+                        <p>
+                            {{ post.user.username }}
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>{{ post.caption }}</p>
+                    </td>
+                </tr>
+            </table>
+            <hr class="feed-divider">
         </div>
-        <p>{{ post.caption }}</p>
     {% endfor %}
-    <a href="{% url 'home:home' %}">Home</a>
 {%  endblock %}

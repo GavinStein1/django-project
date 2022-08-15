@@ -9,6 +9,11 @@ body {
     background-color: #eeeeee;
 }
 
+main {
+    position: relative;
+    top: 117px;
+}
+
 a:active {
     color: black;
     text-decoration: none;
@@ -35,6 +40,10 @@ a:visited {
 
 .header-menu {
     background-color: #111111;
+    position: fixed;
+    top: 0;
+    z-index: 10;
+    width: 100%;
 }
 
 .header-table {
@@ -55,10 +64,10 @@ a:visited {
     position:fixed;
     margin: 20px 0;
     left: 20px;
-    bottom:0px;
-    font-family: Montserrat;
+    bottom: 0;
+    font-family: Montserrat, sans-serif;
     font-size: 25px;
-    border-radius: 15px;
+    border-radius: 20px;
     text-align: center;
 }
 
@@ -70,12 +79,14 @@ a:visited {
     color: #eeeeee;
     text-decoration: none;
     font-family: Montserrat, sans-serif;
+    width: 100%;
+    padding: 0 10px;
 }
 
 .create-post a:visited {
     color: #eeeeee;
     text-decoration: none;
-
+    padding: 20px;
 }
 
 .create-post a:active {
@@ -86,7 +97,7 @@ a:visited {
 .menu-button {
     width: 8%;
     margin: 10px 20px;
-    padding: 5px 20px;
+    /*padding: 5px 20px;*/
     background-color: #eeeeee;
     color: #111111;
     border-radius: 15px;
@@ -94,7 +105,10 @@ a:visited {
     font-size: 15px;
     text-align: center;
     vertical-align: middle;
+}
 
+.menu-button a {
+    padding: 5px 20px;
 }
 
 .menu-button:hover {
@@ -110,7 +124,7 @@ a:visited {
 }
 
 td a {
-    display:block;
+    /*display:block;*/
     width:100%;
     text-decoration: none;
 }
@@ -190,6 +204,7 @@ hr.solid {
     /*margin-left: 20px;*/
     /*margin-right: 20px;*/
     object-fit: cover;
+    border: #111111 solid 1px;
 }
 
 .post {
@@ -220,7 +235,7 @@ p.caption {
 
 .home-table {
     position: absolute;
-    top: 50%;
+    top: 300px;
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
@@ -250,7 +265,7 @@ p.caption {
     color: #111111;
     font-size: 50px;
     position: absolute;
-    top: 35%;
+    top: 175px;
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
@@ -258,7 +273,7 @@ p.caption {
 
 .login-form {
     position: absolute;
-    top: 50%;
+    top: 200px;
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
@@ -319,7 +334,7 @@ p.caption {
 .login-button a {
     color: #eeeeee;
     text-decoration: none;
-    padding: 11.5px;
+    padding: 11.5px 45px;
 }
 
 .login-button:hover {
@@ -347,11 +362,11 @@ p.caption {
 
 .signup-form {
     position: absolute;
-    top: 50%;
+    top: 300px;
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-    height: 510px;
+    height: 560px;
     width: 420px;
     border: black solid 2px;
     padding: 20px;
@@ -364,4 +379,31 @@ p.caption {
     color: red;
     font-family: Montserrat, sans-serif;
     font-size: 12px;
+}
+
+.feed {
+    width: 80%;
+}
+
+.feed-table {
+    width: 600px;
+    margin: 20px auto;
+    font-family: Lato, sans-serif;
+}
+
+.profile-pic-feed img {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 450px;
+    object-fit: cover;
+    width: 75px;
+    height: 75px;
+    border-radius:50%;
+    border: #111111 solid 2px;
+}
+
+.feed-divider {
+    border-top: 2px solid #111111;
+    width: 600px;
+    margin: 0 auto;
 }

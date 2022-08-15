@@ -8,10 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;700&family=Montserrat&display=swap"
           rel="stylesheet">
     <title>{% block title %}Insta{% endblock %}</title>
-</head>
-<body>
-  <main>
-  {% block header %}
+    {% block header %}
       <div class="header-menu">
           <div class="logo">
             <strong>BRAND</strong>
@@ -55,6 +52,9 @@
           </table>
       </div>
   {% endblock %}
+</head>
+<body>
+  <main>
     {% block content %}
     {% endblock %}
   </main>

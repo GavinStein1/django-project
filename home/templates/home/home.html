@@ -5,54 +5,53 @@
     <link rel="stylesheet" type="text/css" href="{% static 'home/home-style.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;700&family=Montserrat&display=swap"
           rel="stylesheet">
+    {% block header %}
+        {% if user.is_authenticated %}
+            <div class="header-menu">
+              <div class="logo">
+                <strong>BRAND</strong>
+              </div>
+              <table class ="header-table">
+                  <tr class="header-table">
+                      {% if user.is_authenticated %}
+                          <td class="menu-button">
+                              <a href="{% url 'home:feed' %}">Feed</a>
+                          </td>
+                          <td class="menu-button">
+                              <a href="{% url 'home:home' %}">Profile</a>
+                          </td>
+                          <td class="header-menu-break">
+
+                          </td>
+                          <td class="search-bar">
+                            Search...
+                          </td>
+                          <td class="menu-button right">
+                            <a href="{% url 'logout' %}">Logout</a>
+                          </td>
+                      {% else %}
+                          <td class="header-menu-break">
+        {#                      <a href="{% url 'home:feed' %}">Feed</a>#}
+                          </td>
+                          <td class="header-menu-break">
+        {#                      <a href="{% url 'home:home' %}">Profile</a>#}
+                          </td>
+                          <td class="header-menu-break">
+
+                          </td>
+                          <td class="header-menu-break">
+        {#                    Search...#}
+                          </td>
+                          <td class="menu-button right">
+                            <a href="{% url 'login' %}">Login</a>
+                        </td>
+                      {% endif %}
+                  </tr>
+              </table>
+            </div>
+        {% endif %}
+    {% endblock %}
 </head>
-
-{% block header %}
-    {% if user.is_authenticated %}
-        <div class="header-menu">
-          <div class="logo">
-            <strong>BRAND</strong>
-          </div>
-          <table class ="header-table">
-              <tr class="header-table">
-                  {% if user.is_authenticated %}
-                      <td class="menu-button">
-                          <a href="{% url 'home:feed' %}">Feed</a>
-                      </td>
-                      <td class="menu-button">
-                          <a href="{% url 'home:home' %}">Profile</a>
-                      </td>
-                      <td class="header-menu-break">
-
-                      </td>
-                      <td class="search-bar">
-                        Search...
-                      </td>
-                      <td class="menu-button right">
-                        <a href="{% url 'logout' %}">Logout</a>
-                      </td>
-                  {% else %}
-                      <td class="header-menu-break">
-    {#                      <a href="{% url 'home:feed' %}">Feed</a>#}
-                      </td>
-                      <td class="header-menu-break">
-    {#                      <a href="{% url 'home:home' %}">Profile</a>#}
-                      </td>
-                      <td class="header-menu-break">
-
-                      </td>
-                      <td class="header-menu-break">
-    {#                    Search...#}
-                      </td>
-                      <td class="menu-button right">
-                        <a href="{% url 'login' %}">Login</a>
-                    </td>
-                  {% endif %}
-              </tr>
-          </table>
-        </div>
-    {% endif %}
-{% endblock %}
 {% block content %}
     {% if user.is_authenticated %}
         <div class="profile-pic inline">
@@ -74,10 +73,18 @@
                 </tr>
                 <tr>
                     <td class="followers" colspan="1">
-                        followers <a href="{% url 'home:user-followers' user.username %}">{{ num_followers }}</a>
+                        followers
                     </td>
                     <td class="followers" colspan="1">
-                        following <a href="{% url 'home:user-following' user.username %}">{{ num_following }}</a>
+                        following
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;" colspan="1">
+                        <a href="{% url 'home:user-followers' user.username %}">{{ num_followers }}</a>
+                    </td>
+                    <td style="text-align: center;" colspan="1">
+                        <a href="{% url 'home:user-following' user.username %}">{{ num_following }}</a>
                     </td>
                 </tr>
             </table>

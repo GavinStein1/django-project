@@ -129,8 +129,9 @@ def feed(request):
     posts = []
     for post_id in posts_id:
         posts.append(Post.objects.get(id=post_id))
-    request.user.unseen_posts = []
-    request.user.save()
+    posts.reverse()
+    # request.user.unseen_posts = []
+    # request.user.save()
 
     context = {
         "posts": posts,
