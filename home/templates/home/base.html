@@ -5,35 +5,56 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="{% static 'home/style.css' %}">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;700&family=Montserrat&display=swap"
+          rel="stylesheet">
     <title>{% block title %}Insta{% endblock %}</title>
 </head>
 <body>
   <main>
-  <div class="header-menu">
-      <table class ="header-menu">
-          <tr >
-              <td class="menu-button">
-                  <p class="menu-button-text">
-                      Feed
-                  </p>
-              </td>
-              <td class="menu-button">
-                  <p class="menu-button-text">
-                      My Allbum
-                  </p>
-              </td>
-              <td class="search-bar">
+  {% block header %}
+      <div class="header-menu">
+          <div class="logo">
+            <strong>BRAND</strong>
+          </div>
+          <table class ="header-table">
+              <tr class="header-table">
+                  {% if user.is_authenticated %}
+                      <td class="menu-button">
+                          <a href="{% url 'home:feed' %}">Feed</a>
+                      </td>
+                      <td class="menu-button">
+                          <a href="{% url 'home:home' %}">Profile</a>
+                      </td>
+                      <td class="header-menu-break">
 
-              </td>
-              <td class="menu-button">
-                  <p class="menu-button-text">
-                      Logout
-                  </p>
-              </td>
-          </tr>
-      </table>
-  </div>
+                      </td>
+                      <td class="search-bar">
+                        Search...
+                      </td>
+                      <td class="menu-button right">
+                        <a href="{% url 'logout' %}">Logout</a>
+                      </td>
+                  {% else %}
+                      <td class="header-menu-break">
+    {#                      <a href="{% url 'home:feed' %}">Feed</a>#}
+                      </td>
+                      <td class="header-menu-break">
+    {#                      <a href="{% url 'home:home' %}">Profile</a>#}
+                      </td>
+                      <td class="header-menu-break">
+
+                      </td>
+                      <td class="header-menu-break">
+    {#                    Search...#}
+                      </td>
+                      <td class="menu-button right">
+                        <a href="{% url 'login' %}">Login</a>
+                    </td>
+                  {% endif %}
+              </tr>
+          </table>
+      </div>
+  {% endblock %}
     {% block content %}
     {% endblock %}
   </main>

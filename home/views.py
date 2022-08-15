@@ -3,6 +3,7 @@ from django.template import loader
 from django.http import HttpResponse, HttpResponseRedirect
 # from django.views import generic
 from django.urls import reverse
+from django.utils import timezone
 from PIL import Image
 
 from .models import Post
@@ -154,13 +155,14 @@ def new_post(request, user):
                 post = Post()
                 post.user = request.user
                 post.caption = data["caption"]
+                post.pub_date = timezone.now()
                 try:
-                    image.save("media/{}.{}".format(post.id, image.format), format=image.format)
+                    image.save("media/posts/{}.{}".format(post.id, image.format), format=image.format)
                 except Exception as e:
                     print(e)
                     return HttpResponse("Failed to upload image")
 
-                post.file_path = "media/{}.{}".format(post.id, image.format)
+                post.file_path = "media/posts/{}.{}".format(post.id, image.format)
                 post.save()
 
                 for follower in request.user.followers:
@@ -193,6 +195,12 @@ def check_image(img):
         if img.format not in formats:
             return False
 
-        return True
+        #check image dimensions (must be square)
+        # TODO: implement cropping functionality
+        dimensions = img.size
+        if dimensions[0] != dimensions[1]:
+            return False
+        else:
+            return True
     except Exception:
         return False

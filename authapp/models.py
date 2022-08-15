@@ -10,3 +10,6 @@ class User(AbstractUser):
     following = fields.ArrayField(models.IntegerField(), default=list)
 
     unseen_posts = fields.ArrayField(models.UUIDField(), default=list)
+
+    profile_pic = models.FilePathField(path="/media/profiles/default.jpg")
+    bio = models.CharField(max_length=240)

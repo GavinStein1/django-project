@@ -1,29 +1,116 @@
 {% extends "home/base.html" %}
+{% load static %}
 {% csrf_token %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'home/home-style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;700&family=Montserrat&display=swap"
+          rel="stylesheet">
+</head>
 
+{% block header %}
+    {% if user.is_authenticated %}
+        <div class="header-menu">
+          <div class="logo">
+            <strong>BRAND</strong>
+          </div>
+          <table class ="header-table">
+              <tr class="header-table">
+                  {% if user.is_authenticated %}
+                      <td class="menu-button">
+                          <a href="{% url 'home:feed' %}">Feed</a>
+                      </td>
+                      <td class="menu-button">
+                          <a href="{% url 'home:home' %}">Profile</a>
+                      </td>
+                      <td class="header-menu-break">
+
+                      </td>
+                      <td class="search-bar">
+                        Search...
+                      </td>
+                      <td class="menu-button right">
+                        <a href="{% url 'logout' %}">Logout</a>
+                      </td>
+                  {% else %}
+                      <td class="header-menu-break">
+    {#                      <a href="{% url 'home:feed' %}">Feed</a>#}
+                      </td>
+                      <td class="header-menu-break">
+    {#                      <a href="{% url 'home:home' %}">Profile</a>#}
+                      </td>
+                      <td class="header-menu-break">
+
+                      </td>
+                      <td class="header-menu-break">
+    {#                    Search...#}
+                      </td>
+                      <td class="menu-button right">
+                        <a href="{% url 'login' %}">Login</a>
+                    </td>
+                  {% endif %}
+              </tr>
+          </table>
+        </div>
+    {% endif %}
+{% endblock %}
 {% block content %}
     {% if user.is_authenticated %}
-        <h1><strong>Welcome to your page</strong></h1>
-        <h2><strong>{{ user.username }}</strong></h2>
-        <div>
-            <a href="{% url 'home:feed' %}">Go to feed</a>
+        <div class="profile-pic inline">
+            <img src="{{ user.profile_pic }}" alt="{{ user.username }}" width="100">
         </div>
-        <div>
-            <a href="{% url 'home:new-post' user %}">Create new post</a>
+        <div class="user-info inline">
+            <table>
+                <tr class="username">
+                    <td colspan="2">
+                        <p>
+                            {{ user.username }}
+                        </p>
+                    </td>
+                </tr>
+                <tr class="bio">
+                    <td colspan="2">
+                        {{ user.bio }}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="followers" colspan="1">
+                        followers <a href="{% url 'home:user-followers' user.username %}">{{ num_followers }}</a>
+                    </td>
+                    <td class="followers" colspan="1">
+                        following <a href="{% url 'home:user-following' user.username %}">{{ num_following }}</a>
+                    </td>
+                </tr>
+            </table>
         </div>
-        <h3>followers: <a href="{% url 'home:user-followers' user.username %}">{{ num_followers }}</a>
-            following: <a href="{% url 'home:user-following' user.username %}">{{ num_following }}</a></h3>
-        {% for post in posts %}
-            <div>
-                <img src="/{{ post.file_path }}" alt="{{ post.id }}" width="300">
-            </div>
-            <p>{{ post.caption }}</p>
+        <hr class="solid">
+        <div class="post-grid">
+            {% for post in posts %}
+                <div class="post">
+                    <img src="/{{ post.file_path }}" alt="{{ post.id }}">
+                    <p>{{ post.pub_date|date:"d M Y" }}</p>
+                    <p class="caption"><strong>{{ user.username }}:</strong> {{ post.caption }}</p>
+                </div>
         {% endfor %}
-        <a href="{% url 'logout' %}">Logout</a>
-    {% else %}
-        <a href="{% url 'login' %}">Login here</a>
-        <div>
-            <a href="{% url 'authapp:create-user' %}">Create Account</a>
         </div>
+
+        <div class="create-post">
+            <div class="create-post-button">
+                <a href="{% url 'home:new-post' user %}">+</a>
+            </div>
+        </div>
+    {% else %}
+        <h3 class="brand-name">
+            BRAND
+        </h3>
+        <table class="home-table">
+            <tr>
+                <td class="home-table-button">
+                    <a href="{% url 'login' %}">Login</a>
+                </td>
+                <td class="home-table-button">
+                    <a href="{% url 'authapp:create-user' %}">Sign Up</a>
+                </td>
+            </tr>
+        </table>
     {% endif %}
 {%  endblock %}

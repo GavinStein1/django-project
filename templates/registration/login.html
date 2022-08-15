@@ -2,18 +2,76 @@
 {% extends 'home/base.html' %}
 
 {% block title %}Login{% endblock %}
+{% block header %}
+    <div class="header-menu">
+          <div class="logo">
+              <a href="{% url 'home:home' %}">BRAND</a>
+          </div>
+          <table class ="header-table">
+              <tr class="header-table">
+                  {% if user.is_authenticated %}
+                      <td class="menu-button">
+                          <a href="{% url 'home:feed' %}">Feed</a>
+                      </td>
+                      <td class="menu-button">
+                          <a href="{% url 'home:home' %}">Profile</a>
+                      </td>
+                      <td class="header-menu-break">
 
+                      </td>
+                      <td class="search-bar">
+                        Search...
+                      </td>
+                      <td class="menu-button right">
+                        <a href="{% url 'logout' %}">Logout</a>
+                      </td>
+                  {% else %}
+                      <td class="header-menu-break">
+    {#                      <a href="{% url 'home:feed' %}">Feed</a>#}
+                      </td>
+                      <td class="header-menu-break">
+    {#                      <a href="{% url 'home:home' %}">Profile</a>#}
+                      </td>
+                      <td class="header-menu-break">
+
+                      </td>
+                      <td class="header-menu-break">
+    {#                    Search...#}
+                      </td>
+                  {% endif %}
+              </tr>
+          </table>
+      </div>
+{% endblock %}
 {% block content %}
-<h2>Log In</h2>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Log In</button>
-</form>
-    <div>
-        <a href="{% url 'authapp:create-user' %}">Create Account</a>
+<div class="login-form">
+    <div class="login">
+        Login
     </div>
-    <div>
-        <a href="{% url 'home:home' %}">Home</a>
-    </div>
+    <form method="post">
+        {% csrf_token %}
+        <div class="input-group">
+            <input class="login-form-input" id="id_username" maxlength="30" name="username" value="" placeholder="username" type="text" />
+            <input class="login-form-input" id="id_password" maxlength="30" name="password" value="" placeholder="password" type="password" />
+            {{ field.errors }}
+        </div>
+        <div>
+            <table class="login-button-table">
+                <tr>
+                    <td class="login-button">
+                        <button class="login-button-a" type="submit">Log In</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="login-button">
+                        <a href="{% url 'authapp:create-user' %}">Sign Up</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+
+    </form>
+</div>
+
 {% endblock %}

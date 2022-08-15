@@ -2,36 +2,366 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    /*border: black solid 1px;*/
 }
 
 body {
     background-color: #eeeeee;
 }
 
-.header-menu {
+a:active {
+    color: black;
+    text-decoration: none;
+}
+a:visited {
+    color: black;
+    text-decoration: none;
+}
+
+.logo {
     height: 60px;
+    font-size: 50px;
+    font-family: Montserrat, sans-serif;
+    color: #eeeeee;
+    width: 30%;
+    height: 60px;
+    margin-left: 20px;
+}
+
+.logo a {
+    color: #eeeeee;
+    text-decoration: none;
+}
+
+.header-menu {
     background-color: #111111;
 }
 
-td.menu-button {
-    width: 126px;
-    height: 40px;
-    margin: 10px 20px;
-    background-color: #eeeeee;
-    vertical-align: bottom;
-    border-radius: 15px;
-    font-family: Montserrat;
-    text-align: center;
-    vertical-align: middle;
+.header-table {
+    width: 100%;
+    border-spacing: 10px;
 }
 
-td.menu-button p {
+.inline {
+    display: inline-block;
+}
+
+.create-post-button {
+    padding: 5px;
+    /*height: 40px;*/
+    width: 4%;
+    background-color: #111111;
+    color: #eeeeee;
+    position:fixed;
+    margin: 20px 0;
+    left: 20px;
+    bottom:0px;
     font-family: Montserrat;
+    font-size: 25px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.create-post:hover {
+    background-color: #222222;
+}
+
+.create-post a {
+    color: #eeeeee;
+    text-decoration: none;
+    font-family: Montserrat, sans-serif;
+}
+
+.create-post a:visited {
+    color: #eeeeee;
+    text-decoration: none;
+
+}
+
+.create-post a:active {
+    color: white;
+    text-decoration: none;
+}
+
+.menu-button {
+    width: 8%;
+    margin: 10px 20px;
+    padding: 5px 20px;
+    background-color: #eeeeee;
+    color: #111111;
+    border-radius: 15px;
+    font-family: Montserrat, sans-serif;
+    font-size: 15px;
     text-align: center;
     vertical-align: middle;
+
+}
+
+.menu-button:hover {
+    background-color: #ffffff;
+}
+
+.menu-button:visited {
+    color: #000000;
+}
+
+.header-menu-break {
+    width: 21%;
+}
+
+td a {
+    display:block;
+    width:100%;
+    text-decoration: none;
 }
 
 .search-bar {
-    width: auto;
+    float: right;
+    width: 100%;
+    padding: 5px 20px;
+    background-color: #eeeeee;
+    border-radius: 15px;
+    font-family: Montserrat, sans-serif;
+    font-size: 15px;
+    text-align: left;
+    vertical-align: middle;
+    color: gray;
+}
 
+.profile-pic {
+    margin: 20px;
+}
+
+.profile-pic img {
+    object-fit: cover;
+    width: 100px;
+    height: 100px;
+    border-radius:50%;
+    border: #111111 solid 2px;
+}
+
+.user-info {
+    vertical-align: top;
+    margin: 20px 0;
+    font-family: Lato, sans-serif;
+}
+
+.username p {
+    font-weight: 700;
+}
+
+.bio td {
+    width: 300px;
+    padding: 5px;
+    font-family: Lato, sans-serif;
+    font-size: 12px;
+}
+
+.followers {
+    width: 150px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.followers a {
+    font-weight: 300;
+    color: #111111;
+}
+
+hr.solid {
+    border-top: 3px solid #bbb;
+    width: 450px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.post-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 40%);
+    justify-content: center;
+    grid-gap: 20px;
+
+}
+
+.post img {
+    width: 100%;
+    /*height: 100%;*/
+    /*margin-bottom: 20px;*/
+    /*margin-left: 20px;*/
+    /*margin-right: 20px;*/
+    object-fit: cover;
+}
+
+.post {
+    font-family: Lato, sans-serif;
+    font-size: 12px;
+}
+
+p.caption {
+    padding: 5px;
+    font-size: 14px;
+}
+
+.follow-button {
+    background-color: #111111;
+    color: #eeeeee;
+    border-radius: 15px;
+    font-family: Montserrat, sans-serif;
+    border: black solid 1px;
+    }
+
+.follow-button:active {
+    background-color: #222222;
+}
+
+.follow-button:hover {
+    background-color: #444444;
+}
+
+.home-table {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.home-table-button {
+    height: 60px;
+    width: 150px;
+    background-color: #111111;
+    border-radius: 30px;
+    font-family: Montserrat, sans-serif;
+    font-size: 18px;
+    text-align: center;
+}
+
+.home-table-button:hover {
+    background-color: #444444;
+}
+
+.home-table-button a {
+    color: #eeeeee;
+    padding: 19px;
+}
+
+.brand-name {
+    font-family: Montserrat, sans-serif;
+    color: #111111;
+    font-size: 50px;
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.login-form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    height: 340px;
+    width: 420px;
+    border: black solid 2px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 30px;
+    text-align: center;
+}
+
+.login {
+    color: #111111;
+    font-family: Montserrat, sans-serif;
+    font-size: 18px;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.login-form-input {
+    border-radius: 20px;
+    border: #111111 solid 2px;
+    height: 40px;
+    padding: 5px;
+    background-color: #eeeeee;
+    margin: 10px 50px;
+    display: inline-block;
+}
+
+.login-form-input:focus-visible {
+    outline: #111111 solid 1px;
+}
+
+.login-button-table {
+    position: absolute;
+    left: 25%;
+    width: 50%;
+    border-spacing: 20px;
+}
+
+.login-button {
+    width: 153px;
+    /*position: absolute;*/
+    /*left: 20%;*/
+    margin: 5%;
+    border-radius: 30px;
+    border: #111111 solid 1px;
+    background-color: #111111;
+    color: #eeeeee;
+    height: 40px;
+    font-family: Montserrat, sans-serif;
+    text-align: center;
+    font-size: 14px;
+}
+
+.login-button a {
+    color: #eeeeee;
+    text-decoration: none;
+    padding: 11.5px;
+}
+
+.login-button:hover {
+    background-color: #444444;
+}
+
+.login-button-a {
+    width: 100%;
+    height: 100%;
+    border: #111111 solid 1px;
+    border-radius: 30px;
+    background-color: #111111;
+    color: #eeeeee;
+    font-family: Montserrat, sans-serif;
+    font-size: 14px;
+}
+
+.login-button-a:hover {
+    background-color: #444444;
+}
+
+.bottom {
+    bottom: 0;
+}
+
+.signup-form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    height: 510px;
+    width: 420px;
+    border: black solid 2px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 30px;
+    text-align: center;
+}
+
+.err-message {
+    color: red;
+    font-family: Montserrat, sans-serif;
+    font-size: 12px;
 }

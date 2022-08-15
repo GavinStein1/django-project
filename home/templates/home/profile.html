@@ -2,23 +2,51 @@
 
 {% block content %}
     {% if user.is_authenticated %}
-        <h1><strong>Welcome to {{ profile_user.username }}'s page</strong></h1>
+        <div class="profile-pic inline">
+            <img src="{{ profile_user.profile_pic }}" alt="{{ profile_user.username }}" width="100">
+        </div>
+        <div class="user-info inline">
+            <table>
+                <tr class="username">
+                    <td colspan="2">
+                        <p>
+                            {{ profile_user.username }}
+                        </p>
+                    </td>
+                    <td>
+                        {% if follow %}
+                            <form method="post">
+                                {% csrf_token %}
+                                <button class="follow-button" name="follow" value="unfollow">Unfollow</button>
+                            </form>
+                        {% else %}
+                            <form method="post">
+                                {% csrf_token %}
+                                <button class="follow-button" name="follow" value="follow">Follow</button>
+                            </form>
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr class="bio">
+                    <td colspan="2">
+                        {{ profile_user.bio }}
+                    </td>
+                </tr>
+                <tr>
+                </tr>
+            </table>
+        </div>
+        <hr class="solid">
         {% if follow %}
-            <form method="post">
-                {% csrf_token %}
-                <button name="follow" value="unfollow">Unfollow</button>
-            </form>
-            {% for post in posts %}
-                <div>
-                    <img src="/{{ post.file_path }}" alt="{{ post.id }}" width="300">
-                </div>
-                <p>{{ post.caption }}</p>
+            <div class="post-grid">
+                {% for post in posts %}
+                    <div class="post">
+                        <img src="/{{ post.file_path }}" alt="{{ post.id }}">
+                        <p>{{ post.pub_date|date:"d M Y" }}</p>
+                        <p class="caption"><strong>{{ user.username }}:</strong> {{ post.caption }}</p>
+                    </div>
             {% endfor %}
-        {% else %}
-            <form method="post">
-                {% csrf_token %}
-                <button name="follow" value="follow">Follow</button>
-            </form>
+            </div>
         {% endif %}
     {% endif %}
 {%  endblock %}

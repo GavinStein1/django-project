@@ -17,17 +17,23 @@ def create_user(request):
         form = NewUserForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
-            if check_user_data(data):
+            error_message = check_user_data(data)
+            if error_message is None:
 
                 user = User.objects.create_user(data["username"], data["email"], data["password"])
 
                 user.first_name = data["first_name"]
+                user.profile_pic = "/media/profiles/default.jpg"
                 user.last_name = data["last_name"]
                 user.save()
                 login(request, user)
                 return HttpResponseRedirect("/")
             else:
-                return HttpResponseRedirect("/create-user")
+                context = {
+                    "error_message": error_message,
+                    "form": NewUserForm(),
+                }
+                return render(request, "authapp/create_user.html", context)
     else:
         form = NewUserForm()
         context = {
@@ -38,14 +44,12 @@ def create_user(request):
 
 def check_user_data(data):
     if data["password"] != data["password_again"]:
-        print("passwords don't match")
-        return False
+        return "Passwords don't match"
 
     username = data["username"]
 
     check_list = User.objects.filter(username=username)
     if len(check_list) != 0:
-        print("username exists")
-        return False
+        return "Username exists"
 
-    return True
+    return None

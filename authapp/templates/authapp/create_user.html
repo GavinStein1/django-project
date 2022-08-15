@@ -1,20 +1,77 @@
-<!DOCTYPE html>
+{% extends 'home/base.html' %}
+
+{% block header %}
+    <div class="header-menu">
+          <div class="logo">
+              <a href="{% url 'home:home' %}">BRAND</a>
+          </div>
+          <table class ="header-table">
+              <tr class="header-table">
+                  {% if user.is_authenticated %}
+                      <td class="menu-button">
+                          <a href="{% url 'home:feed' %}">Feed</a>
+                      </td>
+                      <td class="menu-button">
+                          <a href="{% url 'home:home' %}">Profile</a>
+                      </td>
+                      <td class="header-menu-break">
+
+                      </td>
+                      <td class="search-bar">
+                        Search...
+                      </td>
+                      <td class="menu-button right">
+                        <a href="{% url 'logout' %}">Logout</a>
+                      </td>
+                  {% else %}
+                      <td class="header-menu-break">
+    {#                      <a href="{% url 'home:feed' %}">Feed</a>#}
+                      </td>
+                      <td class="header-menu-break">
+    {#                      <a href="{% url 'home:home' %}">Profile</a>#}
+                      </td>
+                      <td class="header-menu-break">
+
+                      </td>
+                      <td class="header-menu-break">
+    {#                    Search...#}
+                      </td>
+                  {% endif %}
+              </tr>
+          </table>
+      </div>
+{% endblock %}
+
+{% block content %}
 <html>
 <head>
     <title>Insta: Sign Up</title>
-    <h1>Sign Up</h1>
 </head>
 <body>
-    <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Submit">
-    </form>
-    <div>
-        <a href="{% url 'login' %}">Login</a>
-    </div>
-    <div>
-        <a href="{% url 'home:home' %}">Home</a>
+    <div class="signup-form">
+        <div class="login">
+            Sign Up
+        </div>
+        <form method="post">
+            {% csrf_token %}
+            <input class="login-form-input" maxlength="30" name="first_name" value="" placeholder="First name" type="text" />
+            <input class="login-form-input" maxlength="30" name="last_name" value="" placeholder="Last name" type="text" />
+            <input class="login-form-input" maxlength="30" name="username" value="" placeholder="Username" type="text" />
+            <input class="login-form-input" maxlength="30" name="email" value="" placeholder="Email address" type="text" />
+            <input class="login-form-input" maxlength="30" name="password" value="" placeholder="Password" type="password" />
+            <input class="login-form-input" maxlength="30" name="password_again" value="" placeholder="Re-enter password" type="password" />
+            <table class="login-button-table">
+                <tr>
+                    <td class="login-button">
+                        <button class="login-button-a" type="submit">Sign up</button>
+                    </td>
+                </tr>
+            </table>
+            {% if error_message %}
+                <p class="err-message">{{ error_message }}</p>
+            {% endif %}
+        </form>
     </div>
 </body>
 </html>
+{% endblock %}
