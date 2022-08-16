@@ -2,8 +2,12 @@
 {% csrf_token %}
 
 {% block follow %}
-    <h3>followers: {{ num_followers }}</h3>
-    {% for follower in followers %}
-        <p><a href="{% url 'home:user-profile' follower %}">{{ follower }}</a></p>
-    {% endfor %}
+    <div class="login-form">
+        <h3 class="followers-header">followers</h3>
+        <div class="followers-container">
+            {% for follower in followers %}
+                <p><a class="follower-user" href="{% url 'home:user-profile' follower %}">{{ follower }}</a></p>
+            {% endfor %}
+        </div>
+    </div>
 {%  endblock %}

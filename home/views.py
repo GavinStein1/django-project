@@ -130,8 +130,8 @@ def feed(request):
     for post_id in posts_id:
         posts.append(Post.objects.get(id=post_id))
     posts.reverse()
-    # request.user.unseen_posts = []
-    # request.user.save()
+    request.user.unseen_posts = []
+    request.user.save()
 
     context = {
         "posts": posts,
@@ -152,7 +152,8 @@ def new_post(request, user):
         if form.is_valid():
             data = form.cleaned_data
             image = Image.open(data["image"])
-            if check_image(image):
+            message = check_image(image)
+            if message is None:
                 post = Post()
                 post.user = request.user
                 post.caption = data["caption"]
@@ -170,19 +171,28 @@ def new_post(request, user):
                     usr = User.objects.get(pk=follower)
                     usr.unseen_posts.append(post.id)
                     usr.save()
+                return HttpResponseRedirect(reverse("home:home"))
             else:
-                return HttpResponse("Failed to upload image")
+                context = {
+                    "err_message": message,
+                    "form": NewPostForm(),
+                }
+                return render(request, 'home/new_post.html', context)
 
         else:
-            print("form not valid")
-        return HttpResponseRedirect("/create-user")
+            message = "Error parsing form"
+            context = {
+                "err_message": message,
+                "form": NewPostForm,
+            }
+            return render(request, 'home/new_post.html', context)
 
     else:
         form = NewPostForm()
         context = {
             "form": form,
         }
-    return render(request, 'home/new_post.html', context)
+        return render(request, 'home/new_post.html', context)
 
 
 def check_image(img):
@@ -191,17 +201,20 @@ def check_image(img):
             "PNG",
             "JPEG",
             "HEIC",
+            "jpg",
+            "jpeg",
         ]
 
         if img.format not in formats:
-            return False
+            return "Invalid format"
 
         #check image dimensions (must be square)
         # TODO: implement cropping functionality
         dimensions = img.size
         if dimensions[0] != dimensions[1]:
-            return False
+            print(dimensions)
+            return "Photo not square"
         else:
-            return True
+            return None
     except Exception:
-        return False
+        return "Error processing image"

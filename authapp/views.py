@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.template import loader
+from django.contrib.sites.shortcuts import get_current_site
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login
 
@@ -16,6 +17,13 @@ def create_user(request):
     if request.method == "POST":
         form = NewUserForm(request.POST)
         if form.is_valid():
+            user = form.save(commit=False)
+            user.is_active = False
+            user.save()
+
+            current_site = get_current_site(request)
+            mail_subject = 'Activation link has been sent to your email id'
+
             data = form.cleaned_data
             error_message = check_user_data(data)
             if error_message is None:

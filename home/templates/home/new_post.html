@@ -3,10 +3,15 @@
     New Post
 {% endblock %}
 {% block content %}
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Upload</button>
-    </form>
-
+    <div class="login-form">
+        <form class="new-post-form" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input class="new-post-input" name="image" accept="image/*" type="file"/>
+            <input class="new-post-input" maxlength="240" name="caption" value="" placeholder="Caption" type="text"/>
+            {% if err_message %}
+                <p class="err-message">{{ err_message }}</p>
+            {% endif %}
+            <button class="new-post-submit" id="actual-btn" type="submit">Upload</button>
+        </form>
+    </div>
 {% endblock %}

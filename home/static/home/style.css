@@ -407,3 +407,51 @@ p.caption {
     width: 600px;
     margin: 0 auto;
 }
+
+.new-post-input {
+    border-radius: 20px;
+    border: #111111 solid 2px;
+    height: 40px;
+    padding: 5px;
+    background-color: #eeeeee;
+    margin: 10px auto;
+    width: 60%;
+    /*text-align: center;*/
+    font-family: Montserrat, sans-serif;
+}
+
+.new-post-submit {
+    margin: 40px auto;
+    width: 100%;
+    height: 40px;
+    border: #111111 solid 1px;
+    border-radius: 30px;
+    background-color: #111111;
+    color: #eeeeee;
+    font-family: Montserrat, sans-serif;
+    font-size: 14px;
+}
+
+.new-post-form {
+    margin: 10px auto;
+}
+
+.followers-header {
+    font-family: Montserrat, sans-serif;
+    margin: 20px auto;
+}
+
+.followers-container {
+    height: 230px;
+    width: 100%;
+    text-align: left;
+    overflow: scroll;
+}
+
+.follower-user {
+    font-family: Montserrat, sans-serif;
+    font-size: 15px;
+    text-decoration: none;
+    text-align: left;
+    margin: 5px 10px;
+}
