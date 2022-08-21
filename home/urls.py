@@ -10,5 +10,6 @@ urlpatterns = [
     path('user/<str:user>', views.user_home, name="user-home"),
     path('user/<str:user>/profile', views.user_profile, name="user-profile"),
     path('user/<str:user>/new-post', views.new_post, name="new-post"),
-    path('feed', views.feed, name="feed")
+    path('feed', views.feed, name="feed"),
+    path('user/<str:user>/edit-profile', views.edit_profile, name="edit-profile"),
 ]

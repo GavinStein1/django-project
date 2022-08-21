@@ -162,6 +162,7 @@ td a {
 
 .username p {
     font-weight: 700;
+    color: #111111;
 }
 
 .bio td {
@@ -169,6 +170,7 @@ td a {
     padding: 5px;
     font-family: Lato, sans-serif;
     font-size: 12px;
+    color: #111111;
 }
 
 .followers {
@@ -199,10 +201,6 @@ hr.solid {
 
 .post img {
     width: 100%;
-    /*height: 100%;*/
-    /*margin-bottom: 20px;*/
-    /*margin-left: 20px;*/
-    /*margin-right: 20px;*/
     object-fit: cover;
     border: #111111 solid 1px;
 }
@@ -219,10 +217,15 @@ p.caption {
 
 .follow-button {
     background-color: #111111;
+    padding: 0 10px;
     color: #eeeeee;
     border-radius: 15px;
     font-family: Montserrat, sans-serif;
-    border: black solid 1px;
+    border: #111111 solid 1px;
+}
+
+.follow-button a {
+    color: #eeeeee;
     }
 
 .follow-button:active {
@@ -366,13 +369,17 @@ p.caption {
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-    height: 560px;
+    height: 510px;
     width: 420px;
     border: black solid 2px;
     padding: 20px;
     background-color: white;
     border-radius: 30px;
     text-align: center;
+}
+
+.signup {
+    font-family: Montserrat, sans-serif;
 }
 
 .err-message {
@@ -454,4 +461,112 @@ p.caption {
     text-decoration: none;
     text-align: left;
     margin: 5px 10px;
+}
+
+.edit-user-info {
+    width: 100%;
+    /*background-color: red;*/
+    color: #eeeeee;
+}
+
+.edit-table {
+    /*width: 50%;*/
+    margin: 20px auto;
+    font-family: Lato, sans-serif;
+}
+
+.solid-div {
+    border-top: 3px solid #bbb;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.edit-table td {
+    width: auto;
+    padding: 0 40px;
+}
+
+.profile-pic-edit img {
+    object-fit: cover;
+    /*width: 100px;*/
+    height: 100px;
+    border-radius:50%;
+    border: #111111 solid 2px;
+}
+
+.post-scroll {
+    height: 340px;
+    width: 75%;
+    margin: 20px auto;
+    overflow: auto;
+    border: #444444 solid 1px;
+    background-color: white;
+    border-radius: 20px;
+}
+
+.scroll-container {
+    display: table;
+    white-space: nowrap;
+    list-style: none;
+}
+
+.scroll-container div {
+    display: table-cell;
+}
+
+.post-scroll img {
+    width: 280px;
+    margin: 20px 10px;
+}
+
+.navigation-buttons {
+    height: 30px;
+    width: 75%;
+    margin: 0 auto;
+}
+
+.navigation-buttons td.save {
+    text-align: right;
+}
+
+.cancel a {
+    background-color: indianred;
+    padding: 0 10px;
+    color: #111111;
+    border-radius: 15px;
+    font-family: Montserrat, sans-serif;
+    border: #111111 solid 1px;
+    text-align: center;
+    height: 100%;
+}
+
+.save button {
+    background-color: limegreen;
+    padding: 0 10px;
+    color: #111111;
+    border-radius: 15px;
+    font-family: Montserrat, sans-serif;
+    border: darkgreen solid 1px;
+    text-align: center;
+    height: 100%;
+}
+
+.bio-input {
+    border-radius: 20px;
+    border: #111111 solid 2px;
+    height: 30px;
+    width: 100%;
+    padding: 5px;
+    background-color: white;
+    margin: 10px 0;
+    display: inline-block;
+}
+
+.user-prompt-delete {
+    font-family: Montserrat, sans-serif;
+}
+
+.prompt-container {
+    width: 75%;
+    margin: 20px auto;
 }

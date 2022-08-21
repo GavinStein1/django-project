@@ -3,7 +3,7 @@
 {% block content %}
     {% if user.is_authenticated %}
         <div class="profile-pic inline">
-            <img src="{{ profile_user.profile_pic }}" alt="{{ profile_user.username }}" width="100">
+            <img src="{{ user_data.profile_pic }}" alt="{{ profile_user.username }}" width="100">
         </div>
         <div class="user-info inline">
             <table>
@@ -29,7 +29,7 @@
                 </tr>
                 <tr class="bio">
                     <td colspan="2">
-                        {{ profile_user.bio }}
+                        {{ user_data.bio }}
                     </td>
                 </tr>
                 <tr>
@@ -43,7 +43,7 @@
                     <div class="post">
                         <img src="/{{ post.file_path }}" alt="{{ post.id }}">
                         <p>{{ post.pub_date|date:"d M Y" }}</p>
-                        <p class="caption"><strong>{{ user.username }}:</strong> {{ post.caption }}</p>
+                        <p class="caption"><strong>{{ profile_user.username }}:</strong> {{ post.caption }}</p>
                     </div>
             {% endfor %}
             </div>

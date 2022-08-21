@@ -1,0 +1,52 @@
+{% extends "home/base.html" %}
+
+{% block content %}
+    <form action="{% url "home:edit-profile" user.username %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="edit-user-info">
+        <table class="edit-table">
+            <tr>
+                <td rowspan="2">
+                    <div class="profile-pic-edit">
+                        <img src="{{ user_data.profile_pic }}" alt="{{ user.username }}" width="100">
+                        <input type="file" name="profile_pic" accept="image/*" style="width:100px;">
+                    </div>
+                </td>
+                <td class="username" rowspan="1">
+                    <p>{{ user.username }}</p>
+                </td>
+            </tr>
+            <tr class="bio">
+                <td rowspan="1">
+                    <p>bio</p>
+                    <input class="bio-input" type="text" name="bio" maxlength="240" placeholder="{{ user_data.bio }}">
+                </td>
+            </tr>
+        </table>
+        <hr class="solid-div">
+    </div>
+    <div class="prompt-container">
+        <p class="user-prompt-delete">Select posts to delete:</p>
+    </div>
+    <div class="post-scroll">
+        <div class="scroll-container">
+        {% for post in posts %}
+            <div>
+                <input type="checkbox" name="posts" value="{{ forloop.counter0 }}">
+                <img id="post-{{ forloop.counter }}" src="/{{ post.file_path }}" alt="{{ post.id }}">
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+    <table class="navigation-buttons">
+    <tr>
+        <td class="cancel">
+            <a href="{% url "home:home" %}">Cancel</a>
+        </td>
+        <td class="save">
+            <button type="submit">Save</button>
+        </td>
+    </tr>
+    </table>
+    </form>
+{% endblock %}

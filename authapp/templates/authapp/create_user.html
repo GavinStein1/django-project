@@ -52,14 +52,16 @@
         <div class="login">
             Sign Up
         </div>
-        <form method="post">
+        <form class="signup" method="post">
             {% csrf_token %}
-            <input class="login-form-input" maxlength="30" name="first_name" value="" placeholder="First name" type="text" />
-            <input class="login-form-input" maxlength="30" name="last_name" value="" placeholder="Last name" type="text" />
-            <input class="login-form-input" maxlength="30" name="username" value="" placeholder="Username" type="text" />
-            <input class="login-form-input" maxlength="30" name="email" value="" placeholder="Email address" type="text" />
-            <input class="login-form-input" maxlength="30" name="password" value="" placeholder="Password" type="password" />
-            <input class="login-form-input" maxlength="30" name="password_again" value="" placeholder="Re-enter password" type="password" />
+            <input class="login-form-input" maxlength="32" name="username" value="" placeholder="Username" type="text" />
+            <p class="err-message">{{ username_error_message }}</p>
+            <input class="login-form-input" maxlength="150" name="email" value="" placeholder="Email address" type="text" />
+            <p class="err-message">{{ email_error_message }}</p>
+            <input class="login-form-input" maxlength="30" name="password1" value="" placeholder="Password" type="password" />
+            <p class="err-message">{{ password1_error_message }}</p>
+            <input class="login-form-input" maxlength="30" name="password2" value="" placeholder="Re-enter password" type="password" />
+            <p class="err-message">{{ password2_error_message }}</p>
             <table class="login-button-table">
                 <tr>
                     <td class="login-button">
