@@ -3,7 +3,7 @@ from django.template import loader
 from django.contrib.sites.shortcuts import get_current_site
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, get_user_model
-from django.utils.encoding import force_bytes, force_text
+from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage, send_mail
@@ -42,9 +42,9 @@ def create_user(request):
             })
             to_email = [form.cleaned_data.get('email')]
             email_from = settings.EMAIL_HOST_USER
-            email = EmailMessage(
-                mail_subject, message, to=[to_email]
-            )
+            # email = EmailMessage(
+            #     mail_subject, message, to=[to_email]
+            # )
             send_mail(mail_subject, message, email_from, to_email)
             # email.send()
             return HttpResponse('Please confirm your email address to complete the registration')
@@ -80,7 +80,7 @@ def create_user(request):
 
 def activate(request, uidb64, token):
     try:
-        uid = force_text(urlsafe_base64_decode(uidb64))
+        uid = force_str(urlsafe_base64_decode(uidb64))
         user = User.objects.get(pk=uid)
     except(TypeError, ValueError, OverflowError, User.DoesNotExist):
         user = None
