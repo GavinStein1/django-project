@@ -29,7 +29,7 @@ except KeyError as e:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["143.244.210.14"]
 
 
 # Application definition
@@ -148,5 +148,3 @@ EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
 EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
 EMAIL_PORT = 587
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-
-ALLOWED_HOSTS = ["143.244.210.14"]
