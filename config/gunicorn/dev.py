@@ -1,7 +1,7 @@
 """Gunicorn *development* config file"""
-from insta.wsgi import application
+
 # Django WSGI application path in pattern MODULE_NAME:VARIABLE_NAME
-wsgi_app = application
+wsgi_app = "insta.wsgi:application"
 # The granularity of Error log outputs
 loglevel = "debug"
 # The number of worker processes for handling requests
