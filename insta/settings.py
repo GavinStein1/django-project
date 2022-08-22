@@ -29,7 +29,7 @@ except KeyError as e:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["143.244.210.14"]
+ALLOWED_HOSTS = [".gallerio.xyz"]
 
 
 # Application definition
