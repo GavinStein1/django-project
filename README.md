@@ -4,6 +4,18 @@ This is a python project implementing django web framework. Building up to be a 
 
 WIP obvs.
 * ~~Only a HTML wireframe for now. Adding CSS and styling soon.~~
-* Styling added
+* ~~Add styling~~
+* ~~Move to production~~
+  * ~~Host on VM~~
+  * ~~Setup Nginx and Gunicorn~~
+  * ~~Enable https~~
+  * Setup http forwarding
+* Rebrand to Gallerio
 
-insta/settings.py has exposure to env variables for safety reasons.
+Features to add:
+* Comments and likes
+* Accepting followers
+* Search for users
+* "galleries" (TBC)
+
+if you would like a preview, visit https://gallerio.xyz.
