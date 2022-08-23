@@ -9,7 +9,7 @@ WIP obvs.
   * ~~Host on VM~~
   * ~~Setup Nginx and Gunicorn~~
   * ~~Enable https~~
-  * Setup http forwarding
+  * ~~Setup http forwarding~~
 * Rebrand to Gallerio
 
 Features to add:
