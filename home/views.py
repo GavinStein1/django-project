@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.template import loader
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound
 # from django.views import generic
 from django.urls import reverse
 from django.utils import timezone
@@ -303,3 +303,27 @@ def edit_profile(request, user):
     }
 
     return render(request, "home/edit_profile.html", context)
+
+
+# def get_media(request, user, filename):
+#     if not request.user.is_authenticated:
+#         return HttpResponseRedirect("/")
+#
+#     # if user != request.user.username:
+#     #     return HttpResponseRedirect("{}/profile".format(user))
+#
+#     try:
+#         post_id = filename.split(".")[0]
+#         post = Post.objects.get(id=post_id)
+#         post_user = User.objects.get(pk=post.user)
+#         post_user_data = get_user_data(post_user)
+#         if request.user.pk in post_user_data.followers:
+#             return image
+#         else:
+#             return HttpResponseNotFound()
+#     except IndexError as e:
+#         return HttpResponseNotFound(e)
+#     except KeyError as e:
+#         return HttpResponseNotFound(e)
+#     except Post.DoesNotExist as e:
+#         return HttpResponseNotFound(e)

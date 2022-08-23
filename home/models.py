@@ -9,6 +9,9 @@ class Post(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey('authapp.User', on_delete=models.CASCADE)
     file_path = models.FilePathField(path='/media/posts')
+
+    image = models.ImageField(null=False, blank=False, upload_to="posts/{}/".format(user))
+
     caption = models.CharField(max_length=240)
     likes = ArrayField(models.IntegerField(), default=list)
     pub_date = models.DateTimeField('date published')
