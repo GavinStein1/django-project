@@ -27,11 +27,7 @@ except KeyError as e:
     raise RuntimeError("Could not find a SECRET_KEY in environment") from e
 
 # SECURITY WARNING: don't run with debug turned on in production!
-try:
-    DEBUG = os.environ['DEBUG']
-except KeyError as e:
-    DEBUG = True
-    print(e)
+DEBUG = False
 
 ALLOWED_HOSTS = [".gallerio.xyz"]
 
