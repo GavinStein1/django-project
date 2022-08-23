@@ -1,5 +1,7 @@
 from django import forms
 
+from .models import Post
+
 
 class NewPostForm(forms.Form):
     image = forms.ImageField()
@@ -8,6 +10,13 @@ class NewPostForm(forms.Form):
 
 class ImageForm(forms.Form):
     image = forms.ImageField()
+
+
+class ModelPostForm(forms.ModelForm):
+
+    class Meta:
+        model = Post
+        fields = ['image', 'caption']
 
 
 class EditProfileForm(forms.Form):

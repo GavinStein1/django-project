@@ -4,11 +4,11 @@ from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound
 # from django.views import generic
 from django.urls import reverse
 from django.utils import timezone
-from django import forms
+
 from PIL import Image
 
 from .models import Post
-from .forms import NewPostForm, EditProfileForm
+from .forms import NewPostForm, EditProfileForm, ModelPostForm
 from authapp.models import User, UserData
 
 
@@ -204,7 +204,7 @@ def new_post(request, user):
             return render(request, 'home/new_post.html', context)
 
     else:
-        form = NewPostForm()
+        form = ModelPostForm()
         context = {
             "form": form,
         }
