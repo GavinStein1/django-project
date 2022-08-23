@@ -30,7 +30,8 @@ except KeyError as e:
 try:
     DEBUG = os.environ['DEBUG']
 except KeyError as e:
-    DEBUG = False
+    DEBUG = True
+    print(e)
 
 ALLOWED_HOSTS = [".gallerio.xyz"]
 
