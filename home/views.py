@@ -163,23 +163,16 @@ def new_post(request, user):
         return HttpResponseRedirect("/")
 
     if request.method == "POST":
-        form = NewPostForm(request.POST, request.FILES)
+        form = ModelPostForm(request.POST, request.FILES)
         if form.is_valid():
-            data = form.cleaned_data
-            image = Image.open(data["image"])
+            post = form.save(commit=False)
+            post.user = request.user
+            post.pub_date = timezone.now()
+            image = Image.open(post.image)
+            # image = Image.open(data["image"])
             message = check_image(image)
             if message is None:
-                post = Post()
-                post.user = request.user
-                post.caption = data["caption"]
-                post.pub_date = timezone.now()
-                try:
-                    image.save("media/posts/{}.{}".format(post.id, image.format), format=image.format)
-                except Exception as e:
-                    print(e)
-                    return HttpResponse("Failed to upload image")
-
-                post.file_path = "media/posts/{}.{}".format(post.id, image.format)
+                post.file_path = ""
                 post.save()
 
                 for follower in get_user_data(request.user).followers:
@@ -191,7 +184,7 @@ def new_post(request, user):
             else:
                 context = {
                     "err_message": message,
-                    "form": NewPostForm(),
+                    "form": ModelPostForm(),
                 }
                 return render(request, 'home/new_post.html', context)
 
@@ -199,7 +192,7 @@ def new_post(request, user):
             message = "Error parsing form"
             context = {
                 "err_message": message,
-                "form": NewPostForm,
+                "form": ModelPostForm,
             }
             return render(request, 'home/new_post.html', context)
 
