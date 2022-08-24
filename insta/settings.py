@@ -140,8 +140,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
 STATIC_ROOT = "/var/www/gallerio.xyz/static"
 MEDIA_URL = '/media/'
-# MEDIA_ROOT = "/var/www/gallerio.xyz/media"
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = "/var/www/gallerio.xyz/media"
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.office365.com'
