@@ -54,7 +54,7 @@
 {% block content %}
     {% if user.is_authenticated %}
         <div class="profile-pic inline">
-            <img src="{{ user_data }}" alt="{{ user.username }}" width="100">
+            <img src="{{ user_data.profile_image.url }}" alt="{{ user.username }}" width="100">
         </div>
         <div class="user-info inline">
             <table>
