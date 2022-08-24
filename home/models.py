@@ -10,7 +10,7 @@ class Post(models.Model):
     user = models.ForeignKey('authapp.User', on_delete=models.CASCADE)
     file_path = models.FilePathField(path='/media/posts')
 
-    image = models.ImageField(null=True, blank=True, upload_to="posts/{}/".format(user.username))
+    image = models.ImageField(null=True, blank=True, upload_to="posts/")
 
     caption = models.CharField(max_length=240)
     likes = ArrayField(models.IntegerField(), default=list)
