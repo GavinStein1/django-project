@@ -102,8 +102,11 @@ def user_profile(request, user):
             request_user_data.save()
             profile_usr_data.save()
             # return HttpResponseRedirect(reverse("home:user-profile", args=(user,)))
+    try:
+        profile_user = User.objects.get(username=user)
+    except User.DoesNotExist as e:
+        HttpResponseNotFound(e)
 
-    profile_user = User.objects.get(username=user)
     if request.user.pk not in get_user_data(profile_user).followers:
         follow = False
     else:
