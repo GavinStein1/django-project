@@ -8,3 +8,7 @@ config/*
 insta/__pycache__/*
 staticfiles/*
 nohup.out
+/home/migrations/
+/authapp/migrations/
+home/__pycache__/
+authapp/__pycache__/
