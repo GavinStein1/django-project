@@ -274,7 +274,7 @@ def edit_profile(request, user):
                 image = Image.open(data["profile_pic"])
                 message = check_image(image)
                 if message is None:
-                    user_data.profile_image = form.profile_pic
+                    user_data.profile_image = data["profile_pic"]
                     user_data.save()
                     # try:
                     #     image.save("media/profiles/{}.{}".format(request.user.username, image.format), format=image.format)
