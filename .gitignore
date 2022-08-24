@@ -1,2 +1,10 @@
 media/*
 home/__pycache__/*
+authapp/__pycache__/*
+.*
+authapp/migrations/*
+home/migrations/*
+config/*
+insta/__pycache__/*
+staticfiles/*
+nohup.out
