@@ -8,7 +8,7 @@
             <tr>
                 <td rowspan="2">
                     <div class="profile-pic-edit">
-                        <img src="{{ user_data.profile_pic }}" alt="{{ user.username }}" width="100">
+                        <img src="{{ user_data.profile_image.url }}" alt="{{ user.username }}" width="100">
                         <input type="file" name="profile_pic" accept="image/*" style="width:100px;">
                     </div>
                 </td>
@@ -33,7 +33,7 @@
         {% for post in posts %}
             <div>
                 <input type="checkbox" name="posts" value="{{ forloop.counter0 }}">
-                <img id="post-{{ forloop.counter }}" src="/{{ post.file_path }}" alt="{{ post.id }}">
+                <img id="post-{{ forloop.counter }}" src="/{{ post.image.url }}" alt="{{ post.id }}">
             </div>
         {% endfor %}
         </div>

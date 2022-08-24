@@ -24,4 +24,5 @@ class UserData(models.Model):
     unseen_posts = fields.ArrayField(models.UUIDField(), default=list)
 
     profile_pic = models.FilePathField(path="/media/profiles/default.jpg", default="/media/profiles/default.jpg")
+    profile_image = models.ImageField(null=True, blank=True, upload_to="profiles/")
     bio = models.CharField(max_length=240)

@@ -274,13 +274,15 @@ def edit_profile(request, user):
                 image = Image.open(data["profile_pic"])
                 message = check_image(image)
                 if message is None:
-                    try:
-                        image.save("media/profiles/{}.{}".format(request.user.username, image.format), format=image.format)
-                        user_data.profile_pic = "/media/profiles/{}.{}".format(request.user.username, image.format)
-                        user_data.save()
-                    except Exception as e:
-                        print(e)
-                        return HttpResponse("Failed to save profile image")
+                    user_data.profile_image = form.profile_pic
+                    user_data.save()
+                    # try:
+                    #     image.save("media/profiles/{}.{}".format(request.user.username, image.format), format=image.format)
+                    #     user_data.profile_pic = "/media/profiles/{}.{}".format(request.user.username, image.format)
+                    #     user_data.save()
+                    # except Exception as e:
+                    #     print(e)
+                    #     return HttpResponse("Failed to save profile image")
             return HttpResponseRedirect("/")
 
         else:

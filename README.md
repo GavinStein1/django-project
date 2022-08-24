@@ -11,6 +11,7 @@ WIP obvs.
   * ~~Enable https~~
   * ~~Setup http forwarding~~
 * Rebrand to Gallerio
+* Change naming convention of post and profile images
 
 Features to add:
 * Comments and likes
