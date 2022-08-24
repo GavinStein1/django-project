@@ -105,7 +105,7 @@ def user_profile(request, user):
     try:
         profile_user = User.objects.get(username=user)
     except Exception as e:
-        HttpResponseNotFound(e)
+        return HttpResponseNotFound(e)
 
     if request.user.pk not in get_user_data(profile_user).followers:
         follow = False
