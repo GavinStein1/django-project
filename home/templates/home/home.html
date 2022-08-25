@@ -107,7 +107,7 @@
                             {% endif %}
                         {% endfor %}
                         </ul>
-                        <form method="post" action="{% url "home:add-comment" post.id %}">
+                        <form method="POST" action="{% url "home:add-comment" post.id %}">
                             {% csrf_token %}
                             <input type="text" name="text" maxlength="240">
                             <button type="submit">comment</button>
