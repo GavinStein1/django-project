@@ -28,4 +28,4 @@ class Comment(models.Model):
 
     text = models.CharField(max_length=240)
     user = models.ForeignKey('authapp.User', on_delete=models.CASCADE)
-    pub_data = models.DateTimeField('date published')
+    pub_date = models.DateTimeField('date published')
