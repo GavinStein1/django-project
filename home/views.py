@@ -175,8 +175,8 @@ def new_post(request, user):
             image = Image.open(post.image)
             message = check_image(image)
             if message is None:
-                post.image.name = '/posts/{}/{}.{}'.format(request.user.id, post.id, image.format)
-                post.file_path = settings.MEDIA_ROOT
+                post.image.name = settings.MEDIA_ROOT + '/posts/{}/{}.{}'.format(request.user.id, post.id, image.format)
+                # post.file_path = settings.MEDIA_ROOT
                 post.save()
 
                 for follower in get_user_data(request.user).followers:
