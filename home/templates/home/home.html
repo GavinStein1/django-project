@@ -100,10 +100,10 @@
                     <p class="caption"><strong>{{ user.username }}:</strong> {{ post.caption }}</p>
                     <button class="follow-button" onclick="toggleText()">comments</button>
 
-                    <p id="{{ post.id }}">Text</p>
+                    <p id="comment-section-{{ forloop.counter }}">Text</p>
                     <script>
                     function toggleText(){
-                      var x = document.getElementById("{{ post.id }}");
+                      var x = document.getElementById("comment-section-{{ forloop.counter }}");
                       if (x.style.display === "none") {
                         x.style.display = "block";
                       } else {
