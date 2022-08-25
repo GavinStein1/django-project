@@ -102,7 +102,9 @@
                     <div id="comment-section-{{ forloop.counter }}" style="display: none">
                         <ul>
                         {% for post_id, comment in comments.items %}
-                            <li>{{ comment.text }}</li>
+                            {% if post_id == post.id %}
+                                <li>{{ comment.text }}</li>
+                            {% endif %}
                         {% endfor %}
                         </ul>
                         <form method="post" action="">
