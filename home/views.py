@@ -325,6 +325,9 @@ def add_comment(request, post_id):
             comment.post = post
             comment.pub_date = timezone.now()
             comment.save()
+
+            post.comments.append(comment.pk)
+            post.save()
             return HttpResponse("form saved")
         return HttpResponse("form invalid")
 
