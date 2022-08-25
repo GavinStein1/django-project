@@ -7,8 +7,8 @@ from django.utils import timezone
 
 from PIL import Image
 
-from .models import Post
-from .forms import NewPostForm, EditProfileForm, ModelPostForm
+from .models import Post, Comment
+from .forms import NewPostForm, EditProfileForm, ModelPostForm, CommentForm
 from authapp.models import User, UserData
 
 
@@ -30,15 +30,22 @@ def user_home(request, user):
 
     posts = Post.objects.filter(user__pk=request.user.pk)
     post_comments = {}
-    # for post in
+    for post in posts:
+        post_comments[post.id] = []
+        for comment in post.comments:
+            post_comments[post.id].append(Comment.objects.get(id=comment))
+
     follower_count = len(get_followers(request.user))
     following_count = len(get_following(request.user))
     user_data = get_user_data(request.user)
+    comment_form = CommentForm()
     context = {
         'user_data': user_data,
         'posts': posts,
         'num_followers': follower_count,
         'num_following': following_count,
+        'comments': post_comments,
+        'comment_form': comment_form
     }
     return render(request, 'home/home.html', context)
 

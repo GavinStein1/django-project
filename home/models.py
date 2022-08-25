@@ -30,3 +30,6 @@ class Comment(models.Model):
     user = models.ForeignKey('authapp.User', on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     pub_date = models.DateTimeField('date published')
+
+    class Meta:
+        ordering = ['pub_date']

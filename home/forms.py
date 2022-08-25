@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Post
+from .models import Post, Comment
 
 
 class NewPostForm(forms.Form):
@@ -27,3 +27,11 @@ class EditProfileForm(forms.Form):
     profile_pic = forms.ImageField(required=False)
     bio = forms.CharField(max_length=240, required=False)
     posts = forms.MultipleChoiceField(choices=(), widget=forms.CheckboxSelectMultiple, required=False)
+
+
+class CommentForm(forms.ModelForm):
+
+    class Meta:
+        model = Comment
+        fields = ['text']
+
