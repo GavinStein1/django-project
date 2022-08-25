@@ -99,7 +99,7 @@
                     <p>{{ post.pub_date|date:"d M Y" }}</p>
                     <p class="caption"><strong>{{ user.username }}:</strong> {{ post.caption }}</p>
                     <button class="follow-button" onclick="toggleVisibility('comment-section-{{ forloop.counter }}')">Toggle comments</button>
-                    <div class="hidden" id="comment-section-{{ forloop.counter }}">
+                    <div id="comment-section-{{ forloop.counter }}" style="display: none">
                         <ul>
                         {% for post_id, comment in comments.items %}
                             <li>{{ comment.text }}</li>
