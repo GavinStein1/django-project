@@ -12,3 +12,4 @@ nohup.out
 /authapp/migrations/
 home/__pycache__/
 authapp/__pycache__/
+home/templates/home/test.html
