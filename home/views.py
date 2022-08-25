@@ -175,7 +175,6 @@ def new_post(request, user):
             image = Image.open(post.image)
             message = check_image(image)
             if message is None:
-                post.image.upload_to = "/posts/{}".format(request.user.id)
                 post.image.name = '{}.{}'.format(post.id, image.format)
                 post.save()
 
@@ -279,14 +278,9 @@ def edit_profile(request, user):
                 message = check_image(image)
                 if message is None:
                     user_data.profile_image = data["profile_pic"]
+                    user_data.profile_image.name = '{}.{}'.format(request.user.username, image.format)
                     user_data.save()
-                    # try:
-                    #     image.save("media/profiles/{}.{}".format(request.user.username, image.format), format=image.format)
-                    #     user_data.profile_pic = "/media/profiles/{}.{}".format(request.user.username, image.format)
-                    #     user_data.save()
-                    # except Exception as e:
-                    #     print(e)
-                    #     return HttpResponse("Failed to save profile image")
+
             return HttpResponseRedirect("/")
 
         else:
@@ -302,27 +296,3 @@ def edit_profile(request, user):
     }
 
     return render(request, "home/edit_profile.html", context)
-
-
-# def get_media(request, user, filename):
-#     if not request.user.is_authenticated:
-#         return HttpResponseRedirect("/")
-#
-#     # if user != request.user.username:
-#     #     return HttpResponseRedirect("{}/profile".format(user))
-#
-#     try:
-#         post_id = filename.split(".")[0]
-#         post = Post.objects.get(id=post_id)
-#         post_user = User.objects.get(pk=post.user)
-#         post_user_data = get_user_data(post_user)
-#         if request.user.pk in post_user_data.followers:
-#             return image
-#         else:
-#             return HttpResponseNotFound()
-#     except IndexError as e:
-#         return HttpResponseNotFound(e)
-#     except KeyError as e:
-#         return HttpResponseNotFound(e)
-#     except Post.DoesNotExist as e:
-#         return HttpResponseNotFound(e)
