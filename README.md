@@ -20,3 +20,4 @@ Features to add:
 * "galleries" (TBC)
 
 if you would like a preview, visit https://gallerio.xyz.
+* Note: site is restricted for development right now.

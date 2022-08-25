@@ -304,3 +304,24 @@ def edit_profile(request, user):
     }
 
     return render(request, "home/edit_profile.html", context)
+
+
+def add_comment(request, post_id):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect("/")
+
+    post = Post.objects.get(id=post_id)
+    post_user = post.user
+    post_user_data = UserData.objects.get(user=post_user)
+
+    if request.user.pk not in post_user_data.followers:
+        return HttpResponseRedirect("/")
+
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            form.save(commit=False)
+            form.user = request.user
+            form.post = post
+            form.pub_date = timezone.now()
+            form.save()

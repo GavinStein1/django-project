@@ -107,8 +107,9 @@
                             {% endif %}
                         {% endfor %}
                         </ul>
-                        <form method="post" action="">
-                            {{ comment_form }}
+                        <form method="post" action="{% url "home:add-comment" post.id %}">
+                            <input type="text" name="text" maxlength="240">
+                            <button type="submit">comment</button>
                         </form>
                     </div>
                 </div>
