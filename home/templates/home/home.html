@@ -98,23 +98,22 @@
                     <img src="{{ post.image.url }}" alt="{{ post.id }}">
                     <p>{{ post.pub_date|date:"d M Y" }}</p>
                     <p class="caption"><strong>{{ user.username }}:</strong> {{ post.caption }}</p>
-                    <button class="follow-button" onclick="toggleText()">comments</button>
+                    <button class="follow-button" onclick="toggleText(comment-section-{{ forloop.counter }})">comments</button>
 
                     <p id="comment-section-{{ forloop.counter }}">Text</p>
-                    <script>
-                    function toggleText(){
-                      var x = document.getElementById("comment-section-{{ forloop.counter }}");
-                      if (x.style.display === "none") {
-                        x.style.display = "block";
-                      } else {
-                        x.style.display = "none";
-                      }
-                    }
-                    </script>
                 </div>
         {% endfor %}
         </div>
-
+        <script>
+            function toggleText(id){
+              var x = document.getElementById(id);
+              if (x.style.display === "none") {
+                x.style.display = "block";
+              } else {
+                x.style.display = "none";
+              }
+            }
+        </script>
         <div class="create-post">
             <div class="create-post-button">
                 <a href="{% url 'home:new-post' user %}">+</a>
