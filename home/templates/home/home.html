@@ -98,7 +98,7 @@
                     <img src="{{ post.image.url }}" alt="{{ post.id }}">
                     <p>{{ post.pub_date|date:"d M Y" }}</p>
                     <p class="caption"><strong>{{ user.username }}:</strong> {{ post.caption }}</p>
-                    <button class="follow-button" onclick="toggleText(comment-section-{{ forloop.counter }})">comments</button>
+                    <button class="follow-button" onclick="toggleText('comment-section-{{ forloop.counter }}')">Toggle comments</button>
 
                     <p id="comment-section-{{ forloop.counter }}">Text</p>
                 </div>
