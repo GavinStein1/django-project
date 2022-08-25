@@ -7,6 +7,7 @@ from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage, send_mail
+import os
 
 from .forms import NewUserForm
 from .models import User, UserData
@@ -42,11 +43,10 @@ def create_user(request):
             })
             to_email = [form.cleaned_data.get('email')]
             email_from = settings.EMAIL_HOST_USER
-            # email = EmailMessage(
-            #     mail_subject, message, to=[to_email]
-            # )
+
             send_mail(mail_subject, message, email_from, to_email)
-            # email.send()
+
+            os.mkdir("/var/www/gallerio.xyz/media/posts/{}".format(user.id))
             return HttpResponse('Please confirm your email address to complete the registration')
         else:
             context = {}

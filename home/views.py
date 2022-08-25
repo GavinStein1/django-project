@@ -175,11 +175,8 @@ def new_post(request, user):
             image = Image.open(post.image)
             message = check_image(image)
             if message is None:
-
-                initial_path = post.image.path
                 post.image.name = '/posts/{}/{}.{}'.format(request.user.id, post.id, image.format)
-                new_path = settings.MEDIA_ROOT + post.image.name
-                os.rename(initial_path, new_path)
+                post.file_path = post.image.path
                 post.save()
 
                 for follower in get_user_data(request.user).followers:
