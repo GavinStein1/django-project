@@ -14,13 +14,18 @@ class Post(models.Model):
 
     caption = models.CharField(max_length=240)
     likes = ArrayField(models.IntegerField(), default=list)
-    comments = ArrayField(models.CharField(max_length=240), default=list)
+    comments = ArrayField(models.IntegerField(), default=list)
     pub_date = models.DateTimeField('date published')
-
-
 
     def __str__(self):
         return str(self.id)
 
     class Meta:
         ordering = ['-pub_date']
+
+
+class Comment(models.Model):
+
+    text = models.CharField(max_length=240)
+    user = models.ForeignKey('authapp.User', on_delete=models.CASCADE)
+    pub_data = models.DateTimeField('date published')
