@@ -6,7 +6,6 @@ from django.urls import reverse
 from django.utils import timezone
 
 from PIL import Image
-import os
 
 from .models import Post
 from .forms import NewPostForm, EditProfileForm, ModelPostForm
