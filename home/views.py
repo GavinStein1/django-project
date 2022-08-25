@@ -314,7 +314,7 @@ def add_comment(request, post_id):
     post_user = post.user
     post_user_data = UserData.objects.get(user=post_user)
 
-    if request.user.pk not in post_user_data.followers:
+    if request.user.pk not in post_user_data.followers and request.user.pk != post_user.pk:
         return HttpResponseRedirect("/")
 
     if request.method == "POST":
