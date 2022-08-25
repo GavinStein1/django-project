@@ -33,7 +33,7 @@ def user_home(request, user):
     for post in posts:
         post_comments[post.id] = []
         for comment in post.comments:
-            post_comments[post.id].append(Comment.objects.get(id=comment))
+            post_comments[post.id].append(Comment.objects.get(pk=comment))
 
     follower_count = len(get_followers(request.user))
     following_count = len(get_following(request.user))
