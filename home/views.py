@@ -320,11 +320,11 @@ def add_comment(request, post_id):
     if request.method == "POST":
         form = CommentForm(request.POST)
         if form.is_valid():
-            form.save(commit=False)
-            form.user = request.user
-            form.post = post
-            form.pub_date = timezone.now()
-            form.save()
+            comment = form.save(commit=False)
+            comment.user = request.user
+            comment.post = post
+            comment.pub_date = timezone.now()
+            comment.save()
             return HttpResponse("form saved")
         return HttpResponse("form invalid")
 
