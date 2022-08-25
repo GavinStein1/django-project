@@ -102,9 +102,9 @@
                     <div id="comment-section-{{ forloop.counter }}" style="display: none">
                         <ul>
                         {% for post_id, comment in comments.items %}
-{#                            {% if post_id == post.id %}#}
-                            <li>{{ comment.text }}</li>
-{#                            {% endif %}#}
+                            {% if post_id == post.id %}
+                                <li>{{ comment.text }}</li>
+                            {% endif %}
                         {% endfor %}
                         </ul>
                         <form method="POST" action="{% url "home:add-comment" post.id %}">
