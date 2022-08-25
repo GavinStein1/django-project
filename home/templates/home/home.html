@@ -101,9 +101,11 @@
                     <button class="follow-button" onclick="toggleVisibility('comment-section-{{ forloop.counter }}')">Toggle comments</button>
                     <div id="comment-section-{{ forloop.counter }}" style="display: none">
                         <ul>
-                        {% for post_id, comment in comments.items %}
+                        {% for post_id, comment_list in comments.items %}
                             {% if post_id == post.id %}
-                                <li>{{ comment.text }}</li>
+                                {% for comment in comment_list %}
+                                    <li>{{ comment.text }}</li>
+                                {% endfor %}
                             {% endif %}
                         {% endfor %}
                         </ul>
