@@ -1,11 +1,12 @@
 from django.shortcuts import render
 from django.template import loader
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound
-# from django.views import generic
+from django.conf import settings
 from django.urls import reverse
 from django.utils import timezone
 
 from PIL import Image
+import os
 
 from .models import Post
 from .forms import NewPostForm, EditProfileForm, ModelPostForm
@@ -172,10 +173,13 @@ def new_post(request, user):
             post.user = request.user
             post.pub_date = timezone.now()
             image = Image.open(post.image)
-            # image = Image.open(data["image"])
             message = check_image(image)
             if message is None:
-                post.file_path = ""
+
+                initial_path = post.image.path
+                post.image.name = '/posts/{}/{}.{}'.format(request.user.id, post.id, image.format)
+                new_path = settings.MEDIA_ROOT + post.image.name
+                os.rename(initial_path, new_path)
                 post.save()
 
                 for follower in get_user_data(request.user).followers:
