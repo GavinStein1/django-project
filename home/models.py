@@ -14,6 +14,7 @@ class Post(models.Model):
 
     caption = models.CharField(max_length=240)
     likes = ArrayField(models.IntegerField(), default=list)
+    comments = ArrayField(models.CharField(max_length=240), default=list)
     pub_date = models.DateTimeField('date published')
 
 
