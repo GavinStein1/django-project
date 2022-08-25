@@ -29,6 +29,8 @@ def user_home(request, user):
         return HttpResponseRedirect("{}/profile".format(user))
 
     posts = Post.objects.filter(user__pk=request.user.pk)
+    post_comments = {}
+    for post in
     follower_count = len(get_followers(request.user))
     following_count = len(get_following(request.user))
     user_data = get_user_data(request.user)
