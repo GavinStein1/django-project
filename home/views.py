@@ -342,6 +342,14 @@ def search_results(request, query):
         return HttpResponseRedirect("/")
 
     users = User.objects.filter(username__contains=query)
+    user_data = []
+    for user in users:
+        user_data.append(get_user_data(user))
 
-    return render(request, "home/search_results.html", {"users": users})
+    context = {
+        "users": users,
+        "users_data": user_data,
+    }
+
+    return render(request, "home/search_results.html", context)
 
