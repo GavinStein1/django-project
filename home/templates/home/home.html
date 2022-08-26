@@ -110,7 +110,7 @@
                         <form method="POST" action="{% url "home:add-comment" post.id %}">
                             {% csrf_token %}
                             <input class="comment-input" type="text" name="text" maxlength="240">
-                            <button class=comment-button" type="submit">comment</button>
+                            <button class="comment-button" type="submit">comment</button>
                         </form>
                     </div>
                 </div>
