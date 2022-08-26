@@ -591,3 +591,15 @@ p.caption {
     font-family: Montserrat, sans-serif;
     border: #111111 solid 1px;
 }
+
+.profile-pic-results {
+    margin: 20px;
+}
+
+.profile-pic-results img {
+    object-fit: cover;
+    width: 100px;
+    height: 100px;
+    border-radius:50%;
+    border: #111111 solid 2px;
+}
