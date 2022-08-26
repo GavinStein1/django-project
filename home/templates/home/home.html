@@ -100,15 +100,13 @@
                     <p class="caption"><strong>{{ user.username }}:</strong> {{ post.caption }}</p>
                     <button class="follow-button" onclick="toggleVisibility('comment-section-{{ forloop.counter }}')">Toggle comments</button>
                     <div id="comment-section-{{ forloop.counter }}" style="display: none">
-                        <ul>
                         {% for post_id, comment_list in comments.items %}
                             {% if post_id == post.id %}
                                 {% for comment in comment_list %}
-                                    <li>{{ comment.text }}</li>
+                                    <p><strong>{{ comment.user.username }}:</strong> {{ comment.text }}</p>
                                 {% endfor %}
                             {% endif %}
                         {% endfor %}
-                        </ul>
                         <form method="POST" action="{% url "home:add-comment" post.id %}">
                             {% csrf_token %}
                             <input type="text" name="text" maxlength="240">
