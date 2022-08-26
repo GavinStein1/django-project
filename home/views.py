@@ -328,7 +328,5 @@ def add_comment(request, post_id):
 
             post.comments.append(comment.pk)
             post.save()
-            return HttpResponse("form saved")
-        return HttpResponse("form invalid")
 
 
