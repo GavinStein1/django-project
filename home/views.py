@@ -328,5 +328,6 @@ def add_comment(request, post_id):
 
             post.comments.append(comment.pk)
             post.save()
+            return HttpResponseRedirect(request.META.HTTP_REFERER)
 
 
