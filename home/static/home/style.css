@@ -570,3 +570,23 @@ p.caption {
     width: 75%;
     margin: 20px auto;
 }
+
+.comment-input {
+    border-radius: 10px;
+    border: #111111 solid 1px;
+    height: 20px;
+    width: 75%;
+    padding: 5px;
+    background-color: white;
+    margin: 10px 5px;
+    display: inline-block;
+}
+
+.comment-button button {
+    background-color: #111111;
+    padding: 0 10px;
+    color: #eeeeee;
+    border-radius: 15px;
+    font-family: Montserrat, sans-serif;
+    border: #111111 solid 1px;
+}
