@@ -12,7 +12,9 @@
                         <div class="profile-pic-results inline">
                             <img src="{{ result.1.profile_image.url }}" alt="{{ result.0.username }}" width="100">
                         </div>
-                        <p class="username" style="display: inline;">{{ result.0.username }}</p>
+                    </td>
+                    <td class="result-username">
+                        <p style="display: inline;">{{ result.0.username }}</p>
                     </td>
                 </tr>
             {% endfor %}

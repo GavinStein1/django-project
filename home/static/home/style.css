@@ -618,3 +618,13 @@ p.caption {
     text-align: center;
     overflow: scroll;
 }
+
+.result-username {
+    font-weight: 700;
+    color: #111111;
+    font-family: Montserrat, sans-serif;
+}
+
+.result-username p {
+    margin: auto 10px;
+}
