@@ -44,6 +44,21 @@
                         <img src="/{{ post.image.url }}" alt="{{ post.id }}">
                         <p>{{ post.pub_date|date:"d M Y" }}</p>
                         <p class="caption"><strong>{{ profile_user.username }}:</strong> {{ post.caption }}</p>
+                        <button class="follow-button" onclick="toggleVisibility('comment-section-{{ forloop.counter }}')">Toggle comments</button>
+                        <div id="comment-section-{{ forloop.counter }}" style="display: none">
+                            {% for post_id, comment_list in comments.items %}
+                                {% if post_id == post.id %}
+                                    {% for comment in comment_list %}
+                                        <p><strong>{{ comment.user.username }}:</strong> {{ comment.text }}</p>
+                                    {% endfor %}
+                                {% endif %}
+                            {% endfor %}
+                            <form method="POST" action="{% url "home:add-comment" post.id %}">
+                                {% csrf_token %}
+                                <input class="comment-input" type="text" name="text" maxlength="240">
+                                <button class="comment-button" type="submit">comment</button>
+                            </form>
+                        </div>
                     </div>
             {% endfor %}
             </div>

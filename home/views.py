@@ -122,12 +122,18 @@ def user_profile(request, user):
         follow = True
 
     posts = Post.objects.filter(user__pk=profile_user.pk)
+    post_comments = {}
+    for post in posts:
+        post_comments[post.id] = []
+        for comment in post.comments:
+            post_comments[post.id].append(Comment.objects.get(pk=comment))
     user_data = get_user_data(profile_user)
     context = {
         "profile_user": profile_user,
         "user_data": user_data,
         "posts": posts,
         "follow": follow,
+        "comments": post_comments,
     }
     return render(request, 'home/profile.html', context)
 
@@ -330,4 +336,12 @@ def add_comment(request, post_id):
             post.save()
             return HttpResponseRedirect(request.META.HTTP_REFERER)
 
+
+def search_results(request, query):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect("/")
+
+    users = User.objects.filter(username__contains=query)
+
+    return render(request, "home/search_results.html", {"users": users})
 
