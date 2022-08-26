@@ -109,8 +109,8 @@
                         {% endfor %}
                         <form method="POST" action="{% url "home:add-comment" post.id %}">
                             {% csrf_token %}
-                            <input type="text" name="text" maxlength="240">
-                            <button type="submit">comment</button>
+                            <input class="bio-input" type="text" name="text" maxlength="240">
+                            <button class=follow-button" type="submit">comment</button>
                         </form>
                     </div>
                 </div>
