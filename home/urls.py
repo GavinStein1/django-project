@@ -14,4 +14,5 @@ urlpatterns = [
     path('user/<str:user>/edit-profile', views.edit_profile, name="edit-profile"),
     path('post/<uuid:post_id>/add-comment', views.add_comment, name="add-comment"),
     path('search/<str:query>', views.search_results, name="search"),
+    path('search', views.search, name="search"),
 ]
