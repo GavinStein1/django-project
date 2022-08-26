@@ -582,7 +582,7 @@ p.caption {
     display: inline-block;
 }
 
-.comment-button button {
+.comment-button {
     background-color: #111111;
     padding: 0 10px;
     color: #eeeeee;
