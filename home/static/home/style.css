@@ -128,9 +128,13 @@ td a {
     text-decoration: none;
 }
 
+.search-bar div {
+    width: 100%;
+}
+
 .search-bar input {
     float: right;
-    width: 100%;
+    width: 80%;
     padding: 5px 20px;
     background-color: #eeeeee;
     border-radius: 15px;
@@ -139,6 +143,16 @@ td a {
     text-align: left;
     vertical-align: middle;
     color: gray;
+}
+
+.search-bar button {
+    width: 20%;
+    background-color: #eeeeee;
+    padding: 0 10px;
+    color: #111111;
+    border-radius: 15px;
+    font-family: Montserrat, sans-serif;
+    border: #111111 solid 1px;
 }
 
 .profile-pic {

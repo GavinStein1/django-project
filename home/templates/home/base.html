@@ -28,8 +28,10 @@
                       <td class="search-bar">
                         <form method="POST" action="{% url "home:search" %}">
                             {% csrf_token %}
-                            <input type="text" placeholder="Search..." name="query">
-                            <button type="submit">Search</button>
+                            <div>
+                                <input type="text" placeholder="Search..." name="query" style="display: inline;">
+                                <button type="submit" style="display: inline;">Search</button>
+                            </div>
                         </form>
                       </td>
                       <td class="menu-button right">
