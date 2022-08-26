@@ -26,7 +26,7 @@
 
                       </td>
                       <td class="search-bar">
-                        <form method="POST" action="{% url "home:control-search" %}">
+                        <form method="POST" action="{% url "home:search" %}">
                             {% csrf_token %}
                             <input type="text" placeholder="Search..." name="query">
                             <button type="submit">Search</button>

@@ -356,3 +356,12 @@ def search_results(request, query):
 
     return render(request, "home/search_results.html", context)
 
+
+def search(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect("/")
+
+    if request.method == "POST":
+        query = request.POST.get("query")
+        return search_results(request, query)
+
