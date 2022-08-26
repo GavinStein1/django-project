@@ -605,7 +605,7 @@ p.caption {
 
 .result-container {
     position: absolute;
-    top: 200px;
+    top: 300px;
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);

@@ -14,7 +14,7 @@
                         </div>
                     </td>
                     <td class="result-username">
-                        <p style="display: inline;">{{ result.0.username }}</p>
+                        <a style="display: inline;" href="{% url "home:user-profile" result.0.username %}">{{ result.0.username }}</a>
                     </td>
                 </tr>
             {% endfor %}
