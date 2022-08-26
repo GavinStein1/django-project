@@ -344,7 +344,10 @@ def search_results(request, query):
     users = User.objects.filter(username__contains=query)
     user_data = []
     for user in users:
-        user_data.append(get_user_data(user))
+        try:
+            user_data.append(get_user_data(user))
+        except UserData.DoesNotExist:
+            continue
 
     context = {
         "users": users,
