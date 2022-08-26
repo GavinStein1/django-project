@@ -9,8 +9,8 @@
             <li>
                 <div class="profile-pic inline">
                     <img src="{{ users_data.forloop.counter0.profile_image.url }}" alt="{{ user.username }}" width="100">
-                    <p>{{ user.username }}</p>
                 </div>
+                <p>{{ user.username }}</p>
             </li>
         {% endfor %}
     </ul>
