@@ -3,18 +3,19 @@
 {% csrf_token %}
 
 {% block content %}
-    <div class="login-form">
+    <div class="result-container">
         <h3 class="followers-header">Results...</h3>
-        <ul>
+        <table>
             {% for result in results %}
-
-                <li>
-                    <div class="profile-pic-results inline">
-                        <img src="{{ result.1.profile_image.url }}" alt="{{ result.0.username }}" width="100">
-                    </div>
-                    <p class="username" style="display: inline;">{{ result.0.username }}</p>
-                </li>
+                <tr class="result-row">
+                    <td>
+                        <div class="profile-pic-results inline">
+                            <img src="{{ result.1.profile_image.url }}" alt="{{ result.0.username }}" width="100">
+                        </div>
+                        <p class="username" style="display: inline;">{{ result.0.username }}</p>
+                    </td>
+                </tr>
             {% endfor %}
-        </ul>
+        </table>
     </div>
 {% endblock %}
