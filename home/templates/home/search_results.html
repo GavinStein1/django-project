@@ -4,13 +4,13 @@
 
 {% block content %}
     <ul>
-        {% for user in users %}
+        {% for result in results %}
 
             <li>
                 <div class="profile-pic inline">
-                    <img src="{{ users_data.forloop.counter0.profile_image.url }}" alt="{{ user.username }}" width="100">
+                    <img src="{{ result.1.profile_image.url }}" alt="{{ result.0.username }}" width="100">
                 </div>
-                <p>{{ user.username }}</p>
+                <p style="display: inline;">{{ result.0.username }}</p>
             </li>
         {% endfor %}
     </ul>

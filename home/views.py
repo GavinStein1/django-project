@@ -342,16 +342,16 @@ def search_results(request, query):
         return HttpResponseRedirect("/")
 
     users = User.objects.filter(username__contains=query)
-    user_data = []
+    results = []
     for user in users:
         try:
-            user_data.append(get_user_data(user))
+            results.append((user, get_user_data(user)))
         except UserData.DoesNotExist:
             continue
 
     context = {
         "users": users,
-        "users_data": user_data,
+        "results": results,
     }
 
     return render(request, "home/search_results.html", context)
